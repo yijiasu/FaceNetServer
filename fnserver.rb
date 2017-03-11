@@ -12,7 +12,7 @@ class FNServer < Sinatra::Base
   end
 
   post '/upload' do
-
+    content_type :json
     @filename = params[:file][:filename]
     file = params[:file][:tempfile]
     new_filename = SecureRandom.hex() + "." + @filename.split(".")[-1]
@@ -28,7 +28,7 @@ class FNServer < Sinatra::Base
   end
 
   post '/check_result' do
-
+    content_type :json
     is_got_result = false
     tried_times = 0
     unless (params[:token] && params[:token].length != 0)
